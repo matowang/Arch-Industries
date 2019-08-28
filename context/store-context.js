@@ -14,7 +14,7 @@ export const defaultStoreContext = {
     checkout: { lineItems: [] },
     products: [],
     shop: {},
-    addVariantToCart: () => { },
+    addVariantToCart: () => { console.log("default add") },
     removeLineItem: () => { },
     updateLineItem: () => { },
 }

@@ -7,6 +7,7 @@ class Layout extends React.Component {
         store: {
             ...defaultStoreContext,
             addVariantToCart: (variantId, quantity) => {
+                console.log("Adding variant...")
                 if (variantId === '' || !quantity) {
                     console.error('Both a size and quantity are required.')
                     return

@@ -8,19 +8,17 @@ import fetch from 'isomorphic-unfetch';
 import Layout from '../layout/layout'
 import BuyButton from '../components/buy-button';
 
-import Client from 'shopify-buy';
-const client = Client.buildClient({
-  domain: process.env.SHOPIFY_URL,
-  storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOCKEN
-});
+import StoreContext from '../context/store-context'
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  static contextType = StoreContext;
+
   render() {
-    console.log(this.props.products);
+    console.log(this.context);
     return (
       <Layout>
         <ul>
@@ -28,7 +26,7 @@ class Home extends React.Component {
             <div key={id}>
               <img src={images[0].src} />
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
-              <BuyButton productID={id} addVariantToCart={this.addVariantToCart} />
+              <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(id)} />
             </div>
           ))}
         </ul>
