@@ -19,14 +19,16 @@ class Home extends React.Component {
 
   render() {
     console.log(this.context);
+    console.log(this.props.products);
     return (
-      <Layout>
+      <div>
         <ul>
           {this.props.products.map(({ id, descriptionHtml, images }) => (
             <div key={id}>
+              {console.log(id)}
               <img src={images[0].src} />
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
-              <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(id)} />
+              <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(id, 1)} />
             </div>
           ))}
         </ul>
@@ -37,7 +39,7 @@ class Home extends React.Component {
             height: 10em;
           }
         `}</style>
-      </Layout>
+      </div>
     );
   }
 }

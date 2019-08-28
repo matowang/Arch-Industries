@@ -12,8 +12,8 @@ export default class BuyButton extends React.Component {
     componentDidMount() {
     }
     render() {
-        return <button onClick={() => this.props.addVariantToCart(this.props.productID, 1)} >
-            buy
+        return <button onClick={this.props.addVariantToCart} >
+            Add to cart
             </button>;
     }
 }

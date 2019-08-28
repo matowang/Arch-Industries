@@ -25,7 +25,7 @@ class Layout extends React.Component {
                 const lineItemsToUpdate = [
                     { variantId, quantity: parseInt(quantity, 10) },
                 ]
-
+                console.log(`Adding ${quantity} of product ${variantId}`)
                 return client.checkout
                     .addLineItems(checkoutId, lineItemsToUpdate)
                     .then(checkout => {
@@ -36,6 +36,9 @@ class Layout extends React.Component {
                                 adding: false,
                             },
                         }))
+                    })
+                    .catch((err) => {
+                        console.log(err);
                     })
             },
             removeLineItem: (client, checkoutID, lineItemID) => {
