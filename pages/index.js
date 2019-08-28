@@ -18,17 +18,15 @@ class Home extends React.Component {
   static contextType = StoreContext;
 
   render() {
-    console.log(this.context);
-    console.log(this.props.products);
     return (
       <div>
         <ul>
-          {this.props.products.map(({ id, descriptionHtml, images }) => (
+          {this.props.products.map(({ id, descriptionHtml, images, variants: [{ id: variantID }] }) => (
             <div key={id}>
-              {console.log(id)}
+              {console.log(variantID)}
               <img src={images[0].src} />
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
-              <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(id, 1)} />
+              <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(variantID, 1)} />
             </div>
           ))}
         </ul>

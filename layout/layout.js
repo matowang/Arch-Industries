@@ -7,7 +7,6 @@ class Layout extends React.Component {
         store: {
             ...defaultStoreContext,
             addVariantToCart: (variantId, quantity) => {
-                console.log("Adding variant...")
                 if (variantId === '' || !quantity) {
                     console.error('Both a size and quantity are required.')
                     return
@@ -25,10 +24,11 @@ class Layout extends React.Component {
                 const lineItemsToUpdate = [
                     { variantId, quantity: parseInt(quantity, 10) },
                 ]
-                console.log(`Adding ${quantity} of product ${variantId}`)
+                console.log(`Adding ${quantity} of product ${variantId}...`)
                 return client.checkout
                     .addLineItems(checkoutId, lineItemsToUpdate)
                     .then(checkout => {
+                        console.log("Variant added");
                         this.setState(state => ({
                             store: {
                                 ...state.store,
@@ -38,7 +38,7 @@ class Layout extends React.Component {
                         }))
                     })
                     .catch((err) => {
-                        console.log(err);
+                        console.error(err);
                     })
             },
             removeLineItem: (client, checkoutID, lineItemID) => {
