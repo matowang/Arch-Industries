@@ -30,6 +30,17 @@ class Home extends React.Component {
             </div>
           ))}
         </ul>
+        <h2>Cart</h2>
+        <ul>
+          {
+            this.context.checkout.lineItems.map(({ title, quantity }) =>
+              <li>
+                <h4>{title}</h4>
+                <div>{quantity}</div>
+              </li>
+            )
+          }
+        </ul>
         <style jsx>{`
           img {
             object-fit: contain;
