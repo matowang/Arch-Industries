@@ -41,6 +41,7 @@ class Home extends React.Component {
             )
           }
         </ul>
+        <button onClick={() => window.open(this.context.checkout.webUrl)}>Checkout</button>
         <style jsx>{`
           img {
             object-fit: contain;
