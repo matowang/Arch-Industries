@@ -2,6 +2,8 @@ import React from 'react'
 
 import StoreContext, { defaultStoreContext } from '../context/store-context'
 
+import Client from 'shopify-buy'
+
 class Layout extends React.Component {
     state = {
         store: {
@@ -92,8 +94,8 @@ class Layout extends React.Component {
             }))
         }
 
-        const createNewCheckout = () => global.client.checkout.create()
-        const fetchCheckout = id => global.client.checkout.fetch(id)
+        const createNewCheckout = () => this.state.store.client.checkout.create()
+        const fetchCheckout = id => this.state.store.client.checkout.fetch(id)
 
         if (existingCheckoutID) {
             console.log("Fetching existing checkout...");
@@ -117,6 +119,16 @@ class Layout extends React.Component {
     }
 
     componentDidMount() {
+        const client = Client.buildClient({
+            storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+            domain: process.env.SHOPIFY_DOMAIN,
+        })
+        this.setState(state => ({
+            store: {
+                ...state.store,
+                client,
+            },
+        }))
         this.initializeCheckout()
             .catch(err => {
                 console.error("Something went wrong with initializing checkout");
