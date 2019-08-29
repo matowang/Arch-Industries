@@ -92,8 +92,8 @@ class Layout extends React.Component {
             }))
         }
 
-        const createNewCheckout = () => this.state.store.client.checkout.create()
-        const fetchCheckout = id => this.state.store.client.checkout.fetch(id)
+        const createNewCheckout = () => global.client.checkout.create()
+        const fetchCheckout = id => global.client.checkout.fetch(id)
 
         if (existingCheckoutID) {
             console.log("Fetching existing checkout...");
