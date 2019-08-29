@@ -25,15 +25,15 @@ class Home extends React.Component {
             <div key={id}>
               <img src={images[0].src} />
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
-              <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(variantID, 1)} />
+              <BuyButton addVariantToCart={() => this.context.addVariantToCart(variantID, 1)} />
             </div>
           ))}
         </ul>
         <h2>Cart</h2>
         <ul>
           {
-            this.context.checkout.lineItems.map(({ title, quantity }) =>
-              <li>
+            this.context.checkout.lineItems.map(({ id, title, quantity }) =>
+              <li key={id}>
                 <h4>{title}</h4>
                 <div>{quantity}</div>
               </li>
