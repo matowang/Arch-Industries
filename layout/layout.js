@@ -119,16 +119,6 @@ class Layout extends React.Component {
     }
 
     componentDidMount() {
-        const client = Client.buildClient({
-            storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
-            domain: process.env.SHOPIFY_DOMAIN,
-        })
-        this.setState(state => ({
-            store: {
-                ...state.store,
-                client,
-            },
-        }))
         this.initializeCheckout()
             .catch(err => {
                 console.error("Something went wrong with initializing checkout");
