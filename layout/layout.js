@@ -115,6 +115,10 @@ class Layout extends React.Component {
 
     componentDidMount() {
         this.initializeCheckout()
+            .catch(err => {
+                console.error("Something went wrong with initializing checkout");
+                console.error(err);
+            })
     }
 
     render() {
