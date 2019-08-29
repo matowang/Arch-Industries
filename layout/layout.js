@@ -96,6 +96,7 @@ class Layout extends React.Component {
         const fetchCheckout = id => this.state.store.client.checkout.fetch(id)
 
         if (existingCheckoutID) {
+            console.log("Fetching existing checkout...");
             try {
                 const checkout = await fetchCheckout(existingCheckoutID)
 
@@ -108,6 +109,8 @@ class Layout extends React.Component {
                 localStorage.setItem('shopify_checkout_id', null)
             }
         }
+
+        console.log("Creating new checkout...");
 
         const newCheckout = await createNewCheckout()
         setCheckoutInState(newCheckout)

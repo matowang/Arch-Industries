@@ -23,7 +23,6 @@ class Home extends React.Component {
         <ul>
           {this.props.products.map(({ id, descriptionHtml, images, variants: [{ id: variantID }] }) => (
             <div key={id}>
-              {console.log(variantID)}
               <img src={images[0].src} />
               <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
               <BuyButton productID={id} addVariantToCart={() => this.context.addVariantToCart(variantID, 1)} />
