@@ -18,6 +18,7 @@ class Home extends React.Component {
   static contextType = StoreContext;
 
   render() {
+    console.log(`Welcome to ${console.log(process.env.SHOPIFY_DOMAIN)}`);
     return (
       <div>
         <ul>
