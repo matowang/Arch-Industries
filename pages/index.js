@@ -10,6 +10,9 @@ import BuyButton from '../components/buy-button';
 
 import StoreContext from '../context/store-context'
 
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class Home extends React.Component {
   static contextType = StoreContext;
 
   render() {
-    console.log(`Welcome to ${console.log(process.env.SHOPIFY_DOMAIN)}`);
+    console.log(`Welcome to ${publicRuntimeConfig.SHOPIFY_DOMAIN}`);
     return (
       <div>
         <ul>

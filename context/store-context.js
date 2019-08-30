@@ -1,9 +1,13 @@
 import React from 'react'
 import Client from 'shopify-buy'
 
+import getConfig from 'next/config'
+
+const { publicRuntimeConfig } = getConfig()
+
 const client = Client.buildClient({
-    storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
-    domain: process.env.SHOPIFY_DOMAIN,
+    storefrontAccessToken: publicRuntimeConfig.SHOPIFY_ACCESS_TOKEN,
+    domain: publicRuntimeConfig.SHOPIFY_DOMAIN,
 })
 
 global.client = client;
